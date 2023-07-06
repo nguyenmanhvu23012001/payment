@@ -7,7 +7,9 @@ class TransactionModel {
   final double transactionmoney;
   final String goods;
 
-  TransactionModel({
+
+  TransactionModel( {
+
     required this.goods,
     required this.id,
     required this.buyer,
