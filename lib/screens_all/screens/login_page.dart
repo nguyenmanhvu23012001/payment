@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intermediary_transaction/screens/register_page.dart';
 import 'package:http/http.dart' as http;
+import 'package:intermediary_transaction/screens_all/screens/register_page.dart';
 import 'home_page.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';

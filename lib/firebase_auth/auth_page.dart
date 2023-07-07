@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:intermediary_transaction/screens/login_page.dart';
-import 'package:intermediary_transaction/screens/register_page.dart';
+
+import '../screens_all/screens/login_page.dart';
+import '../screens_all/screens/register_page.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);

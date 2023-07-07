@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intermediary_transaction/Providers/history_provider.dart';
 import 'package:intermediary_transaction/Providers/transaction_provider.dart';
 import 'package:intermediary_transaction/Providers/walletbalance_provider.dart';
-import 'package:intermediary_transaction/screens/history_page.dart';
-import 'package:intermediary_transaction/screens/home_bottombar.dart';
-import 'package:intermediary_transaction/screens/home_page.dart';
-import 'package:intermediary_transaction/screens/login_page.dart';
-import 'package:intermediary_transaction/screens/transaction_page.dart';
-import 'package:intermediary_transaction/screens/walletbalance_page.dart';
+
+import 'package:intermediary_transaction/screens_all/screens/home_bottombar.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

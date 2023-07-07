@@ -6,10 +6,10 @@ class TransactionModel {
   final double deposit;
   final double transactionmoney;
   final String goods;
+  final String creatat;
 
-
-  TransactionModel( {
-
+  TransactionModel(  {
+    required this.creatat,
     required this.goods,
     required this.id,
     required this.buyer,

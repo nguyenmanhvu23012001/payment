@@ -3,6 +3,7 @@ class WalletBalanceModel {
   final int deposit;
   final int debit;
   final String id;
+  final String creatat;
 
 
   WalletBalanceModel({
@@ -10,6 +11,8 @@ class WalletBalanceModel {
     required this.deposit,
     required this.debit,
     required this.id,
+    required this.creatat,
+
 
   });
 

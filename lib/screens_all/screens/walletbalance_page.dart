@@ -1,11 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-
-import '../Providers/walletbalance_provider.dart';
-import '../models/walletbalance.dart';
+import '../../Providers/walletbalance_provider.dart';
 import 'package:provider/provider.dart';
 
 class WalletBalancePage extends StatefulWidget {
@@ -92,6 +89,14 @@ class _WalletBalancePageState extends State<WalletBalancePage> {
                               'Số dư ví: $remainingBalance',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              'Thời gian: ${transaction.creatat}',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

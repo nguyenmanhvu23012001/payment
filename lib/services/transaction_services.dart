@@ -23,7 +23,7 @@ class TransactionService {
             seller: e['seller'],
             transactionmoney: double.parse(e['transaction_money'].toString()),
             deposit: double.parse(e['deposit'].toString()),
-            goods: e['goods'],
+            goods: e['goods'], creatat: e ['created_at'],
           );
         }).toList();
         return transactions;
@@ -33,14 +33,16 @@ class TransactionService {
   }
 
   final dio = Dio();
-  Future createTransaction(String responseString) async {
-    Map data = {
-      "buyer": "64892d954ba6a1be37e1f7c4",
-      "seller": "64896f704ba6a1be37d5290f",
-      "goods": "da ok7",
-      "transaction_money": 1000000000,
-      "deposit": 1000000
+  Future<void> createTransaction({required String buyer,required  String seller, required  String goods, required  double transactionMoney,required  double deposit}) async {
+    Map<String, dynamic> data = {
+      "buyer": '64892d954ba6a1be37e1f7c4',
+      "seller":'64896f704ba6a1be37d5290f',
+      "goods": goods,
+      "transaction_money": transactionMoney,
+      "deposit": deposit,
     };
+
+
 
 
       Response response = await dio
@@ -54,7 +56,8 @@ class TransactionService {
             buyer: transactionData['buyer'],
             seller: transactionData['seller'],
             deposit: double.parse(transactionData['deposit'].toString()),
-            transactionmoney: double.parse(transactionData['transaction_money'].toString()));
+            transactionmoney: double.parse(transactionData['transaction_money'].toString()),
+            creatat: transactionData['created_at']);
         TransactionProvider().addTransaction(transaction);
 
       } else {
@@ -63,7 +66,7 @@ class TransactionService {
 
 
   }
-
+// id cua thag thang sua,
   Future updatePost(String reponseString) async {
     Map<String, dynamic> request = {
       "buyer": "64892d954ba6a1be37e1f7c4",
@@ -74,7 +77,7 @@ class TransactionService {
     };
     final uri = Uri.http(
       baseURL,
-      '/slink/v1/transactions',
+      '/slink/v1/transactions/id',
     );
     final reponse = await http.post(uri, body: request);
     if (reponse.statusCode == 200) {

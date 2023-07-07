@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intermediary_transaction/screens/transaction_page.dart';
-import 'package:intermediary_transaction/screens/walletbalance_page.dart';
+
 
 import 'package:http/http.dart' as http;
+import 'package:intermediary_transaction/screens_all/screens/transaction_page.dart';
+import 'package:intermediary_transaction/screens_all/screens/walletbalance_page.dart';
 
 import 'history_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
