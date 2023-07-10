@@ -45,26 +45,7 @@ class _TransactionPageState extends State<TransactionPage> {
     );
   }
 
-  void updatePostButton(String id) async {
-    String buyerValue = buyer.text;
-    String sellerValue = seller.text;
-    String goodsValue = goods.text;
-    double depositValue = double.parse(deposit.text);
-    double transactionmoneyValue = double.parse(transactionmoney.text);
 
-    TransactionProvider transactionProvider =
-    Provider.of<TransactionProvider>(context, listen: false);
-
-    await TransactionService().updateTransaction(
-      id: id,
-      goods: goodsValue,
-      buyer: buyerValue,
-      seller: sellerValue,
-      deposit: depositValue,
-      transactionMoney: transactionmoneyValue,
-      transactionProvider: transactionProvider,
-    );
-  }
 
   void deletePostButton() async {
     // await TransactionService().deletePost("");
@@ -105,12 +86,101 @@ class _TransactionPageState extends State<TransactionPage> {
                   clickPostButton();
                   resetField();
                   Navigator.of(context).pop();
-                }, onEdit: () {  },
+                },
               );
             },
           );
         },
       ),
+    );
+  }
+
+}
+class AddTransactionDialog extends StatelessWidget {
+  final TextEditingController buyer;
+  final TextEditingController seller;
+  final TextEditingController goods;
+  final TextEditingController transactionmoney;
+  final TextEditingController deposit;
+  final VoidCallback onAdd;
+
+  const AddTransactionDialog({
+    required this.buyer,
+    required this.seller,
+    required this.goods,
+    required this.transactionmoney,
+    required this.deposit,
+    required this.onAdd,
+
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text("Thêm giao dịch"),
+      content: SingleChildScrollView(
+        child: Column(
+          children: [
+            TextField(
+              controller: buyer,
+              obscureText: false,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Người mua',
+              ),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              controller: seller,
+              obscureText: false,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Người bán',
+              ),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              controller: goods,
+              obscureText: false,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Hàng hóa',
+              ),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              controller: transactionmoney,
+              obscureText: false,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Số tiền giao dịch',
+              ),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              controller: deposit,
+              obscureText: false,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Số tiền cọc',
+              ),
+            ),
+            SizedBox(height: 10),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text('Hủy'),
+        ),
+        TextButton(
+          onPressed: onAdd,
+          child: Text('Thêm'),
+        ),
+      ],
     );
   }
 }

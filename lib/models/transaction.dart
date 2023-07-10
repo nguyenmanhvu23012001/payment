@@ -4,12 +4,11 @@ class TransactionModel {
   final double deposit;
   final double transactionmoney;
   final String goods;
+  final String? id;
 
-
-  TransactionModel(  {
-
+  TransactionModel({
+    this.id,
     required this.goods,
-
     required this.buyer,
     required this.seller,
     required this.deposit,

@@ -56,6 +56,7 @@ class TransactionService {
     if (response.statusCode == 200) {
       var transactionData = response.data['data'];
       TransactionModel transaction = TransactionModel(
+        id : transactionData['_id'],
         goods: transactionData['goods'],
         buyer: transactionData['buyer'],
         seller: transactionData['seller'],
@@ -78,7 +79,6 @@ class TransactionService {
     required String goods,
     required double transactionMoney,
     required double deposit,
-    required TransactionProvider transactionProvider,
   }) async {
     final url = '$httpUrl$baseURL/slink/v1/transactions/64897ef5edb33d709a022d00'; // Thay đổi đường dẫn API tương ứng với cấu trúc API của bạn
     final data = {
@@ -89,6 +89,7 @@ class TransactionService {
       'deposit': deposit,
     };
 
+
     try {
       final response = await dio.put(
         url,
@@ -97,12 +98,14 @@ class TransactionService {
 
       if (response.statusCode == 200) {
         print('Update transaction success!');
+
       } else {
         print('Update transaction failed!');
       }
     } catch (error) {
       print('Update transaction error: $error');
     }
+
   }
 
 

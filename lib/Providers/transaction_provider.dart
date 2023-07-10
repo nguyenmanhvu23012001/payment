@@ -26,7 +26,6 @@ class TransactionProvider extends ChangeNotifier {
   addTransaction(TransactionModel transactionModel){
     _transactions.add(transactionModel);
     notifyListeners();
-
   }
 
 }

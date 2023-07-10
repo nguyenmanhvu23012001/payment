@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intermediary_transaction/models/transaction.dart';
+import 'package:intermediary_transaction/screens_all/handle_screen/transaction_form_modal.dart';
 import 'package:provider/provider.dart';
 import '../../Providers/transaction_provider.dart';
 import '../../services/transaction_services.dart';
@@ -51,14 +53,8 @@ class TransactionList extends StatelessWidget {
                                 showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return AddTransactionDialog(
-                                      buyer: TextEditingController(text: tran.buyer),
-                                      seller: TextEditingController(text: tran.seller),
-                                      goods: TextEditingController(text: tran.goods),
-                                      transactionmoney: TextEditingController(text: tran.transactionmoney.toString()),
-                                      deposit: TextEditingController(text: tran.deposit.toString()),
-                                      onAdd: () {},
-                                      onEdit: () {},
+                                    return UpdateTransactionFormModal(
+                                    transaction: tran,
                                     );
                                   },
                                 );
@@ -85,91 +81,7 @@ class TransactionList extends StatelessWidget {
   }
 }
 
-class AddTransactionDialog extends StatelessWidget {
-  final TextEditingController buyer;
-  final TextEditingController seller;
-  final TextEditingController goods;
-  final TextEditingController transactionmoney;
-  final TextEditingController deposit;
-  final VoidCallback onAdd;
-  final VoidCallback onEdit;
-  const AddTransactionDialog({
-    required this.buyer,
-    required this.seller,
-    required this.goods,
-    required this.transactionmoney,
-    required this.deposit,
-    required this.onAdd,
-    required this.onEdit,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text("Thêm giao dịch"),
-      content: SingleChildScrollView(
-        child: Column(
-          children: [
-            TextField(
-              controller: buyer,
-              obscureText: false,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Người mua',
-              ),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              controller: seller,
-              obscureText: false,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Người bán',
-              ),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              controller: goods,
-              obscureText: false,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Hàng hóa',
-              ),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              controller: transactionmoney,
-              obscureText: false,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Số tiền giao dịch',
-              ),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              controller: deposit,
-              obscureText: false,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Số tiền cọc',
-              ),
-            ),
-            SizedBox(height: 10),
-          ],
-        ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: Text('Hủy'),
-        ),
-        TextButton(
-          onPressed: onAdd,
-          child: Text('Thêm'),
-        ),
-      ],
-    );
-  }
-}
+
+
+
