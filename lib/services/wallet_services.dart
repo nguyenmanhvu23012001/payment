@@ -16,8 +16,7 @@ class WalletService {
             name: e['user'],
             deposit:e['deposit'],
             debit:e['debit'],
-            id: e['_id'],
-              creatat: e['created_at']
+
           );
 
           //       name: map['user'],

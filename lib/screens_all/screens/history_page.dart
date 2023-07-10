@@ -25,78 +25,81 @@ class _TransactionHistoryPageState extends State<TransactionHistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Lịch sử'),
-        centerTitle: true,
-      ),
-      body: Consumer<HistoryProvider>(
-        builder: (context, value, child) {
-          final historytransaction = value.historytransaction;
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            expandedHeight: 200.0,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Image.asset(
+                'assets/images/hinh-anh-ve-bien-14.jpg',
+                width: double.maxFinite,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Consumer<HistoryProvider>(
+            builder: (context, value, child) {
+              final historytransaction = value.historytransaction;
 
-          return ListView.builder(
-            itemCount: historytransaction.length,
-            itemBuilder: (BuildContext context, int index) {
-              var history = historytransaction[index];
-              return  Padding(
-                padding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [Colors.white10, Colors.white],
-                    ),
-                  ),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      child: Icon(
-                        Icons.people_alt_rounded,
-                        size: 30,
+              return SliverList(
+                delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                    var history = historytransaction[index];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [Colors.white10, Colors.white],
+                          ),
+                        ),
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            child: Icon(
+                              Icons.people_alt_rounded,
+                              size: 30,
+                            ),
+                          ),
+                          title: Column(
+                            children: [
+                              Text(history.transaction),
+                            ],
+                          ),
+                          subtitle: Column(
+                            children: [
+                              Text(history.status),
+                            ],
+                          ),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.edit),
+                                onPressed: () {
+                                  // Xử lý sự kiện khi nhấn nút "Chỉnh sửa"
+                                },
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.delete),
+                                onPressed: () {
+                                  // Xử lý sự kiện khi nhấn nút "Xóa"
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
-                    title: Column(
-                      children: [
-                        Text(history.id),
-                        Text(history.transaction),
-                      ],
-                    ),
-                    subtitle: Column(
-                      children: [
-                        Text(history.status),
-                        Text(
-                          "\$${history.description}",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Text(history.creatat),
-                      ],
-                    ),
-
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.edit),
-                          onPressed: () {
-                            // updatePostButton();
-                          },
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.delete),
-                          onPressed: () {
-                            // deletePostButton();
-                          },
-                        ),
-
-                      ],
-                    ),
-                  ),
+                    );
+                  },
+                  childCount: historytransaction.length,
                 ),
               );
             },
-          );
-        },
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -106,15 +109,4 @@ class _TransactionHistoryPageState extends State<TransactionHistoryPage> {
       ),
     );
   }
-
-  IconData _getStatusIcon(String status) {
-    if (status == 'Thành công') {
-      return Icons.check_circle;
-    } else if (status == 'Thất bại') {
-      return Icons.error;
-    } else {
-      return Icons.access_time;
-    }
-  }
 }
-

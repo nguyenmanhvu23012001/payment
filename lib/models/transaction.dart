@@ -1,17 +1,15 @@
 class TransactionModel {
-  final String id;
-  // final DateTime transferDate;
   final String buyer;
   final String seller;
   final double deposit;
   final double transactionmoney;
   final String goods;
-  final String creatat;
+
 
   TransactionModel(  {
-    required this.creatat,
+
     required this.goods,
-    required this.id,
+
     required this.buyer,
     required this.seller,
     required this.deposit,
